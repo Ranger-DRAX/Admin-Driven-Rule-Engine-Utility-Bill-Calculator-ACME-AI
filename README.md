@@ -1,5 +1,7 @@
 # ACME AI - Electricity Bill Calculator
 
+🌐 **Live Application**: [https://admin-driven-rule-engine-utility-bi.vercel.app/](https://admin-driven-rule-engine-utility-bi.vercel.app/)
+
 A full-stack web application for calculating electricity bills with an admin panel for rate configuration.
 
 ## 📋 Project Overview
