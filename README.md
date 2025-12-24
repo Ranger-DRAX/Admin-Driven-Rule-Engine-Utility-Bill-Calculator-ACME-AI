@@ -209,15 +209,7 @@ REACT_APP_API_URL=http://localhost:3000
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📄 License
 
-This project is part of the ACME AI Fellowship Program.
-
-## 👥 Authors
-
-- **ACME AI Fellowship 5** - December 2025
-
-## 📞 Support
 
 For support, please refer to the [User Guide](docs/USER_GUIDE.md) or contact the development team.
 
