@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { configService } from '../../services/config.service';
 import type { Config } from '../../types';
 import { colors, typography, spacing, borderRadius, components } from '../../styles/theme';
@@ -8,6 +9,7 @@ import { colors, typography, spacing, borderRadius, components } from '../../sty
  * Allows updating rate per kWh, VAT percentage, and fixed service charge
  */
 const RateManagement: React.FC = () => {
+  const navigate = useNavigate();
   const [currentRate, setCurrentRate] = useState<Config | null>(null);
   const [loading, setLoading] = useState(false);
   const [editing, setEditing] = useState(false);
@@ -26,10 +28,10 @@ const RateManagement: React.FC = () => {
       const data = await configService.getAll();
       if (data.length > 0) {
         setCurrentRate(data[0]);
-        const rate = data[0].rateValue ?? data[0].ratePerUnit ?? 0;
+        const rate = Number(data[0].rateValue ?? data[0].ratePerUnit ?? 0);
         setRatePerUnit(rate);
-        setVatPercentage(data[0].vatPercentage ?? 0);
-        setFixedServiceCharge(data[0].fixedServiceCharge ?? 0);
+        setVatPercentage(Number(data[0].vatPercentage ?? 0));
+        setFixedServiceCharge(Number(data[0].fixedServiceCharge ?? 0));
       }
     } catch (error) {
       console.error('Failed to fetch rate:', error);
@@ -53,13 +55,13 @@ const RateManagement: React.FC = () => {
       const rateData = {
         rateName: 'Standard Rate',
         rateType: 'tier_rate' as const,
-        rateValue: ratePerUnit,
+        rateValue: Number(ratePerUnit),
         unitType: 'per_kwh' as const,
         consumerType: 'residential' as const,
         tierMinUnits: 0,
         tierMaxUnits: null,
-        vatPercentage: vatPercentage,
-        fixedServiceCharge: fixedServiceCharge,
+        vatPercentage: Number(vatPercentage),
+        fixedServiceCharge: Number(fixedServiceCharge),
         isActive: true,
       };
 
@@ -103,6 +105,32 @@ const RateManagement: React.FC = () => {
       padding: spacing['2xl']
     }}>
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+        {/* Back Button */}
+        <button
+          onClick={() => navigate('/admin/dashboard')}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: spacing.xs,
+            padding: `${spacing.sm} ${spacing.md}`,
+            backgroundColor: 'transparent',
+            border: 'none',
+            color: colors.gray[600],
+            fontSize: typography.fontSize.sm,
+            fontWeight: typography.fontWeight.medium,
+            cursor: 'pointer',
+            marginBottom: spacing.lg,
+            transition: 'color 0.2s'
+          }}
+          onMouseOver={(e) => e.currentTarget.style.color = colors.primary[600]}
+          onMouseOut={(e) => e.currentTarget.style.color = colors.gray[600]}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Back to Dashboard
+        </button>
+
         {/* Header */}
         <div style={{ marginBottom: spacing.xl }}>
           <h1 style={{ 
@@ -169,7 +197,7 @@ const RateManagement: React.FC = () => {
                   fontWeight: typography.fontWeight.bold, 
                   color: colors.primary[700]
                 }}>
-                  ৳{((currentRate.rateValue ?? currentRate.ratePerUnit ?? 0)).toFixed(3)}
+                  ৳{Number(currentRate.rateValue ?? currentRate.ratePerUnit ?? 0).toFixed(3)}
                 </div>
                 <div style={{ 
                   fontSize: typography.fontSize.sm,
@@ -252,7 +280,7 @@ const RateManagement: React.FC = () => {
                     fontWeight: typography.fontWeight.bold, 
                     color: colors.gray[900]
                   }}>
-                    ৳{currentRate.fixedServiceCharge.toFixed(2)}
+                    ৳{Number(currentRate.fixedServiceCharge).toFixed(2)}
                   </div>
                 </div>
               </div>

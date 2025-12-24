@@ -70,10 +70,10 @@ const CalculationHistoryView: React.FC = () => {
                   </td>
                   <td className="py-3 px-4 capitalize">{item.consumerType}</td>
                   <td className="py-3 px-4 text-right">{item.unitsConsumed}</td>
-                  <td className="py-3 px-4 text-right">৳{item.baseAmount.toFixed(2)}</td>
-                  <td className="py-3 px-4 text-right">৳{item.taxAmount.toFixed(2)}</td>
-                  <td className="py-3 px-4 text-right">৳{item.surchargeAmount.toFixed(2)}</td>
-                  <td className="py-3 px-4 text-right font-bold">৳{item.totalAmount.toFixed(2)}</td>
+                <td className="py-3 px-4 text-right">৳{Number(item.baseAmount).toFixed(2)}</td>
+                <td className="py-3 px-4 text-right">৳{Number(item.taxAmount).toFixed(2)}</td>
+                <td className="py-3 px-4 text-right">৳{Number(item.surchargeAmount).toFixed(2)}</td>
+                <td className="py-3 px-4 text-right font-bold">৳{Number(item.totalAmount).toFixed(2)}</td>
                   <td className="py-3 px-4">{item.calculationMonth}</td>
                   <td className="py-3 px-4">{new Date(item.createdAt).toLocaleDateString()}</td>
                 </tr>

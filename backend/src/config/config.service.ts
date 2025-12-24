@@ -163,9 +163,9 @@ export class ConfigService {
     
     if (activeRates.length > 0) {
       result = {
-        ratePerUnit: activeRates[0].rateValue,
-        vatPercentage: activeRates[0].vatPercentage || 0,
-        fixedServiceCharge: activeRates[0].fixedServiceCharge || 0,
+        ratePerUnit: Number(activeRates[0].rateValue),
+        vatPercentage: Number(activeRates[0].vatPercentage || 0),
+        fixedServiceCharge: Number(activeRates[0].fixedServiceCharge || 0),
       };
     } else {
       result = { ratePerUnit: 0.12, vatPercentage: 15, fixedServiceCharge: 5 }; // Defaults

@@ -214,14 +214,14 @@ const BillCalculator: React.FC = () => {
                   color: colors.gray[600],
                   fontSize: typography.fontSize.sm
                 }}>
-                  Base Charge ({unitsConsumed} kWh × ৳{result.tierBreakdown[0]?.ratePerUnit.toFixed(2)})
+                  Base Charge ({unitsConsumed} kWh × ৳{Number(result.tierBreakdown[0]?.ratePerUnit || 0).toFixed(2)})
                 </span>
                 <span style={{ 
                   fontWeight: typography.fontWeight.semibold,
                   color: colors.gray[900],
                   fontSize: typography.fontSize.base
                 }}>
-                  ৳{result.baseAmount.toFixed(2)}
+                  ৳{Number(result.baseAmount).toFixed(2)}
                 </span>
               </div>
 
@@ -245,7 +245,7 @@ const BillCalculator: React.FC = () => {
                     color: colors.gray[900],
                     fontSize: typography.fontSize.base
                   }}>
-                    ৳{result.totalTax.toFixed(2)}
+                    ৳{Number(result.totalTax).toFixed(2)}
                   </span>
                 </div>
               )}
@@ -270,7 +270,7 @@ const BillCalculator: React.FC = () => {
                     color: colors.gray[900],
                     fontSize: typography.fontSize.base
                   }}>
-                    ৳{result.totalSurcharge.toFixed(2)}
+                    ৳{Number(result.totalSurcharge).toFixed(2)}
                   </span>
                 </div>
               )}
@@ -295,7 +295,7 @@ const BillCalculator: React.FC = () => {
                   fontWeight: typography.fontWeight.bold,
                   color: colors.primary[600]
                 }}>
-                  ৳{result.totalAmount.toFixed(2)}
+                  ৳{Number(result.totalAmount).toFixed(2)}
                 </span>
               </div>
             </div>
