@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clear Storage</title>
+</head>
+<body>
+    <h1>Clear LocalStorage</h1>
+    <button onclick="clearStorage()">Clear Storage</button>
+    <pre id="result"></pre>
+
+    <script>
+        function clearStorage() {
+            const resultEl = document.getElementById('result');
+            resultEl.textContent = 'Before clear:\n';
+            resultEl.textContent += 'token: ' + localStorage.getItem('token') + '\n';
+            resultEl.textContent += 'admin: ' + localStorage.getItem('admin') + '\n\n';
+            
+            localStorage.clear();
+            
+            resultEl.textContent += 'Storage cleared!\n\n';
+            resultEl.textContent += 'After clear:\n';
+            resultEl.textContent += 'token: ' + localStorage.getItem('token') + '\n';
+            resultEl.textContent += 'admin: ' + localStorage.getItem('admin') + '\n';
+        }
+        
+        // Auto-run on load
+        window.onload = clearStorage;
+    </script>
+</body>
+</html>
