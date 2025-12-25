@@ -99,13 +99,7 @@ After running the seed script:
 
 ⚠️ **Change these credentials immediately in production!**
 
-## 📚 Documentation
 
-- [API Documentation](docs/API.md)
-- [Architecture Overview](docs/ARCHITECTURE.md)
-- [Deployment Guide](docs/DEPLOYMENT.md)
-- [User Guide](docs/USER_GUIDE.md)
-- [Requirements](docs/REQUIREMENTS.md)
 
 ## 🧪 Testing
 
